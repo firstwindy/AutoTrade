@@ -2,8 +2,8 @@ import time
 import pyupbit
 import datetime
 
-access = "7Qthuh3P7jCEdYWbooHHgOdEPJ65v7xkibHQBcXA"
-secret = "NSxnpVxSOiAQxnQ1xfiaMzMY0rw8rKiMTCcbANlJ"
+access = "your-access"
+secret = "your-secret"
 
 def get_target_price(ticker, k):
     """변동성 돌파 전략으로 매수 목표가 조회"""
@@ -55,13 +55,15 @@ while True:
             current_price = get_current_price("KRW-BTC")
             if target_price < current_price and ma15 < current_price:
                 krw = get_balance("KRW")
+                print("buy_market_order")
                 if krw > 5000:
-                    print("buy_market_order")
+                    print("krw > 5000")
                     #upbit.buy_market_order("KRW-BTC", krw*0.9995)
         else:
             btc = get_balance("BTC")
+            print("sell_market_order")
             if btc > 0.00008:
-                print("sell_market_order")
+                print("btc > 0.00008")
                 #upbit.sell_market_order("KRW-BTC", btc*0.9995)
         time.sleep(1)
     except Exception as e:
